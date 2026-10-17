@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "_macros.html" import champ, entete %}
+{% block title %}Absences{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-5 col-md-7">
+    <div class="card">
+      {{ entete('search', 'Consulter les absences', "Recherche par numéro de carte étudiant") }}
+      <div class="card-body p-4">
+        <form method="POST" novalidate>
+          {{ form.hidden_tag() }}
+          {{ champ(form.nce, 'person-vcard', "Ex. E1") }}
+          <button type="submit" class="btn btn-brand w-100">
+            <i class="bi bi-search me-2"></i>Afficher les absences
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

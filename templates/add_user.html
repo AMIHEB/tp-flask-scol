@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% from "_macros.html" import champ, entete %}
+{% block title %}Ajouter un utilisateur{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
+    <div class="card">
+      {{ entete('person-plus-fill', 'Nouvel utilisateur', 'Créer un compte') }}
+      <div class="card-body p-4">
+        <form method="POST" novalidate>
+          {{ form.hidden_tag() }}
+          {{ champ(form.username, 'person', "Ex. iheb") }}
+          {{ champ(form.email, 'envelope', "exemple@domaine.com") }}
+          {{ champ(form.password, 'lock', "Au moins 6 caractères", mdp=True) }}
+          <div class="strength mb-1"><div id="strength-bar"></div></div>
+          <small id="strength-text" class="text-muted d-block mb-3">Force du mot de passe</small>
+          {{ champ(form.confirm, 'shield-lock', "Retapez le mot de passe", mdp=True) }}
+          <button type="submit" class="btn btn-brand w-100 mt-2">
+            <i class="bi bi-check2-circle me-2"></i>Ajouter
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+  var pw = document.getElementById('password');
+  var bar = document.getElementById('strength-bar');
+  var txt = document.getElementById('strength-text');
+  pw.addEventListener('input', function () {
+    var v = pw.value, s = 0;
+    if (v.length >= 6) s++;
+    if (v.length >= 10) s++;
+    if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++;
+    if (/\d/.test(v) && /[^A-Za-z0-9]/.test(v)) s++;
+    var cols = ['#e2e8f0', '#dc3545', '#fd7e14', '#ffc107', '#198754'];
+    var noms = ['Force du mot de passe', 'Faible', 'Moyen', 'Bon', 'Excellent'];
+    if (!v) s = 0;
+    bar.style.width = (s * 25) + '%';
+    bar.style.background = cols[s];
+    txt.textContent = noms[s];
+  });
+</script>
+{% endblock %}

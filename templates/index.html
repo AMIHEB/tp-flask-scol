@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+  <h2 class="fw-bold" style="color:var(--brand)">TD-TP : Gestion de données avec Flask</h2>
+  <p class="text-muted">Choisissez une rubrique pour commencer</p>
+</div>
+<div class="row g-4">
+  <div class="col-md-4">
+    <a class="card feature-card p-4 text-center" href="{{ url_for('add_user') }}">
+      <span class="feature-icon mb-3 mx-auto" style="background:#2563eb"><i class="bi bi-person-plus-fill"></i></span>
+      <h5 class="fw-bold">Ajouter un utilisateur</h5>
+      <p class="text-muted mb-0">Formulaire avec validation des données</p>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a class="card feature-card p-4 text-center" href="{{ url_for('users') }}">
+      <span class="feature-icon mb-3 mx-auto" style="background:#0d9488"><i class="bi bi-people-fill"></i></span>
+      <h5 class="fw-bold">Liste des utilisateurs</h5>
+      <p class="text-muted mb-0">Consulter les comptes enregistrés</p>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a class="card feature-card p-4 text-center" href="{{ url_for('choisir_etudiant') }}">
+      <span class="feature-icon mb-3 mx-auto" style="background:#d97706"><i class="bi bi-calendar-x-fill"></i></span>
+      <h5 class="fw-bold">Absences d'un étudiant</h5>
+      <p class="text-muted mb-0">Rechercher par numéro de carte (essayez E1)</p>
+    </a>
+  </div>
+</div>
+{% endblock %}

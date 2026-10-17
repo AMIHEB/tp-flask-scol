@@ -1,0 +1,27 @@
+{% macro champ(f, icone, placeholder='', mdp=False) %}
+<div class="mb-3">
+  <label class="form-label fw-semibold" for="{{ f.id }}">{{ f.label.text }}</label>
+  <div class="input-group has-validation">
+    <span class="input-group-text"><i class="bi bi-{{ icone }}"></i></span>
+    {{ f(class_='form-control' ~ (' is-invalid' if f.errors else ''), placeholder=placeholder, autocomplete='off') }}
+    {% if mdp %}
+    <button class="btn btn-outline-secondary toggle-pw" type="button" data-target="{{ f.id }}" title="Afficher / masquer">
+      <i class="bi bi-eye"></i>
+    </button>
+    {% endif %}
+    {% if f.errors %}
+    <div class="invalid-feedback"><i class="bi bi-exclamation-circle me-1"></i>{{ f.errors[0] }}</div>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro entete(icone, titre, sous_titre) %}
+<div class="card-header-brand d-flex align-items-center gap-3">
+  <span class="icon-circle"><i class="bi bi-{{ icone }}"></i></span>
+  <div>
+    <h4 class="mb-0 fw-bold">{{ titre }}</h4>
+    <small class="opacity-75">{{ sous_titre }}</small>
+  </div>
+</div>
+{% endmacro %}

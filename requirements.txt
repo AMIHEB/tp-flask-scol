@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-WTF
+PyMySQL
+cryptography
+Passlib
+email_validator
